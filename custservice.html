@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Service</title>
+  <style>
+    .main-service{
+      text-align: center;
+      margin-top: 100px;
+    }
+    .notes{
+      margin-left: 50px;
+  }
+  .help-1{
+    display: flex;
+    margin:3px;
+    padding:5px;
+    margin-left:9.5%;
+    gap:20px;
+  }
+  .help{
+    margin-left: 15px;
+  }
+  .input-1{
+    height:30px;
+    width: 80%;
+  }
+    /* Your CSS styles here */
+    .suggestion-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+      display: none; /* Hide initially */
+    }
+    .suggestion-list li {
+      padding: 5px 10px;
+      background-color: #f3f3f3;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 5px;
+    }
+    .suggestion-list li:hover {
+      background-color: #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+  <div class="notes">
+    <p class="notes-1"><b>Important:</b> Rs. 2,000 notes will no longer be accepted for Cash on Delivery (COD) payments or Cashloads.</p>
+    <p class="notes-1">You can view this page in your preferred language by clicking the following links: English, हिन्दी(Hindi), தமிழ்(Tamil), తెలుగు(Telugu), ಕನ್ನಡ( Kannada), മലയാളം(Malayalam) , मराठी( Marathi), বাংলা( Bengali).</p>
+    <p class="notes-1">For information on our live sale events, including promotions, deals, cashbacks, and quick solutions, refer to our Help page on Sale Events.</p>
+  </div>
+  <div class="main-service">
+    <div class="text-1">
+      <h2>Hello. What can we help you with?</h2>
+      <h3>Some things you can do here</h3>
+    </div>
+   
+    <div class="service-1">
+      <img src="./assets/service/order.png" alt="" class="service-img-1">
+      <img src="./assets/service/return.png" alt="" class="service-img-1">
+      <img src="./assets/service/address.png" alt="" class="service-img-1">
+    </div>
+    <div class="service-1">
+      <img src="./assets/service/prime.png" alt="" class="service-img-1">
+      <img src="./assets/service/payment.png" alt="" class="service-img-1">
+      <img src="./assets/service/setting.png" alt="" class="service-img-1">
+      <img src="./assets/service/digital and device.png" alt="" class="service-img-1">
+    </div>
+    <div class="help">
+      <div class="help-1">
+        <h3>Find more solutions</h3>
+        <h4>Type something like, "question about a charge"</h4>
+      </div>
+      <div>
+        <input type="text" class="input-1" placeholder="Enter any query">
+        <ul class="suggestion-list"></ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const inputField = document.querySelector('.input-1');
+    const suggestionList = document.querySelector('.suggestion-list');
+
+    // Simulated suggestions for demonstration
+    const suggestions = [
+      "Question about a charge",
+      "Return process",
+      "Shipping information",
+      "Account settings",
+      "Payment methods"
+    ];
+
+    // Function to update suggestions based on user input
+    function updateSuggestions(inputValue) {
+      // Clear previous suggestions
+      suggestionList.innerHTML = '';
+
+      // Filter suggestions based on input value
+      const filteredSuggestions = suggestions.filter(suggestion =>
+        suggestion.toLowerCase().includes(inputValue.toLowerCase())
+      );
+
+      // Display filtered suggestions
+      filteredSuggestions.forEach(suggestion => {
+        const li = document.createElement('li');
+        li.textContent = suggestion;
+        suggestionList.appendChild(li);
+      });
+
+      // Show the suggestion list
+      suggestionList.style.display = filteredSuggestions.length ? 'block' : 'none';
+    }
+
+    // Add event listener to the input field
+    inputField.addEventListener('input', function() {
+      const inputValue = this.value.trim();
+
+      // Update suggestions based on input value
+      updateSuggestions(inputValue);
+    });
+
+    // Add event listener to hide suggestion list when clicking outside the input field
+    document.addEventListener('click', function(event) {
+      if (!event.target.closest('.help')) {
+        suggestionList.style.display = 'none';
+      }
+    });
+
+    // Add event listener to select suggestion on click
+    suggestionList.addEventListener('click', function(event) {
+      if (event.target.tagName === 'LI') {
+        inputField.value = event.target.textContent;
+        suggestionList.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
+``
